@@ -10,6 +10,14 @@ public class Player : MonoBehaviour {
     [SerializeField] float xRange = 5.5f;
     [SerializeField] float yRange = 3f;
 
+    [SerializeField] float positionPitchFactor = -5f;
+    [SerializeField] float positionYawFactor = 3f;
+    [SerializeField] float controlPitchFaction = -20f;
+    [SerializeField] float controlRollFactor = -20f;
+
+    float xThrow;
+    float yThrow;
+
     // Use this for initialization
     void Start () {
 		
@@ -24,13 +32,21 @@ public class Player : MonoBehaviour {
 
     private void ProcessRotation()
     {
-        transform.localRotation = Quaternion.Euler(-30f, 30f, 0f);
+        // Pitch based on location on the screen + add extra pitch if button is being pressed
+        // pitch - coupled with Position on Screen and Control Throw
+        float pitch = transform.localPosition.y * positionPitchFactor + yThrow * controlPitchFaction;    // x
+        // yaw - coupled with Position on Screen
+        float yaw = transform.localPosition.x * positionYawFactor;
+        // roll - coupled with Control Throw
+        float roll = xThrow * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
 
     private void ProcessTranslation()
     {
-        float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+        yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
         float xOffset = xThrow * speed * Time.deltaTime;
         float yOffset = yThrow * speed * Time.deltaTime;
