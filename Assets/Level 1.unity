@@ -264,7 +264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4601968749542050, guid: bf8c0922a87f6414fa376f61bddccdf0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 122.39
+      value: 806
       objectReference: {fileID: 0}
     - target: {fileID: 4601968749542050, guid: bf8c0922a87f6414fa376f61bddccdf0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -572,7 +572,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1584980195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 490.48, y: 58.76, z: 94.09}
+  m_LocalPosition: {x: 490.48, y: 58.76, z: 772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2012876047}
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circuit: {fileID: 1650329225}
-  lookAheadForTargetOffset: 2
+  lookAheadForTargetOffset: 1
   lookAheadForTargetFactor: 0.1
   lookAheadForSpeedOffset: 10
   lookAheadForSpeedFactor: 0.2
@@ -844,10 +844,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc15294bf0bfbb41b6fb86e5f9425cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   xRange: 8.61
   yRange: 5
   positionPitchFactor: -5
   positionYawFactor: 5.5
   controlPitchFaction: -20
-  controlRollFactor: -20
+  controlRollFactor: -30
