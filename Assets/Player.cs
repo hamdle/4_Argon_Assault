@@ -18,13 +18,16 @@ public class Player : MonoBehaviour {
     float xThrow;
     float yThrow;
 
+    string eric = "Eric";
+    string fatima = "Fatima";
+
     // Use this for initialization
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         ProcessTranslation();
         ProcessRotation();
