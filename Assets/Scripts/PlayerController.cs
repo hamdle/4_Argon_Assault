@@ -6,6 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour {
 
+	// todo work-out speed up after reset screen
+
 	[Header("General")]
     [Tooltip("in meters per second (ms^-1)")][SerializeField] float controlSpeed = 20f;
     [SerializeField] float xRange = 5f;
