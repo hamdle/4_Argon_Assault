@@ -4,38 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
-    [Tooltip("in meters per second (ms^-1)")][SerializeField] float speed = 20f;
-    [SerializeField] float xRange = 5.5f;
+	[Header("General")]
+    [Tooltip("in meters per second (ms^-1)")][SerializeField] float controlSpeed = 20f;
+    [SerializeField] float xRange = 5f;
     [SerializeField] float yRange = 3f;
 
+	[Header("Screen-position")]
     [SerializeField] float positionPitchFactor = -5f;
-    [SerializeField] float positionYawFactor = 3f;
-    [SerializeField] float controlPitchFaction = -20f;
-    [SerializeField] float controlRollFactor = -20f;
+	[SerializeField] float positionYawFactor = 5f;
 
-    float xThrow;
+	[Header("Control-throw")]
+	[SerializeField] float controlRollFactor = -20f;
+	[SerializeField] float controlPitchFaction = -20f;
+
+	float xThrow;
     float yThrow;
-
-    string eric = "Eric";
-    string fatima = "Fatima";
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		print("TRIGGER");
-	}
+	bool isControlEnabled = true;
 
 	// Update is called once per frame
 	void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+		if (isControlEnabled)
+		{
+			ProcessTranslation();
+			ProcessRotation();
+		}
     }
 
     private void ProcessRotation()
@@ -56,8 +51,8 @@ public class Player : MonoBehaviour {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
-        float xOffset = xThrow * speed * Time.deltaTime;
-        float yOffset = yThrow * speed * Time.deltaTime;
+        float xOffset = xThrow * controlSpeed * Time.deltaTime;
+        float yOffset = yThrow * controlSpeed * Time.deltaTime;
 
         float xPosRaw = transform.localPosition.x + xOffset;
         float xPosClamp = Mathf.Clamp(xPosRaw, -xRange, xRange);
@@ -67,4 +62,9 @@ public class Player : MonoBehaviour {
 
         transform.localPosition = new Vector3(xPosClamp, yPosClamp, transform.localPosition.z);
     }
+
+	void OnPlayerDeath()
+	{
+		isControlEnabled = false;
+	}
 }
